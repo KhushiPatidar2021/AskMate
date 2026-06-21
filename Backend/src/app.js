@@ -1,6 +1,5 @@
 const express = require('express');
 const {GoogleGenerativeAI} = require('@google/generative-ai');
-const { createIdResolver } = require('vite');
 const assignmentModel = require('./models/assignment.model')
 const cors = require('cors')
 
