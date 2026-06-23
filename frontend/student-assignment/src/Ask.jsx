@@ -16,9 +16,10 @@ const Ask = () => {
     try {
       setloading(true);
 
-      const response = await axios.post("http://localhost:3000/ask", {
-        question,
-      });
+     const response = await axios.post(
+  `${import.meta.env.VITE_API_URL}/ask`,
+  { question }
+);
 
       setanswer(response.data.answer);
       setquestion("");

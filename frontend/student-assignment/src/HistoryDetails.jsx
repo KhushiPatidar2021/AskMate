@@ -10,7 +10,9 @@ const {id} = useParams()
  
 useEffect(()=>{
     const getdetails = async ()=>{
-        const response = await axios.get(`http://localhost:3000/history/${id}`)
+        const response = await axios.get(
+  `${import.meta.env.VITE_API_URL}/history/${id}`
+)
         sethistorydetails(response.data)
     }
     getdetails()

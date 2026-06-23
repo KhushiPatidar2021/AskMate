@@ -9,6 +9,7 @@ app.use(express.json());
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 
 app.post('/ask', async (req , res)=>{
+    console.log(req.body)
   try{ const {question} = req.body;
 
     const model = genAI.getGenerativeModel({

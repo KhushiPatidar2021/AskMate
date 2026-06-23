@@ -10,7 +10,9 @@ const History = () => {
 
   useEffect(() => {
     const gethistory = async () => {
-      const response = await axios.get('http://localhost:3000/history')
+     const response = await axios.get(
+  `${import.meta.env.VITE_API_URL}/history`
+)
       sethistory(response.data.history)
     }
     gethistory()
