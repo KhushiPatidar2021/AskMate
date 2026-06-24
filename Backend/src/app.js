@@ -13,7 +13,7 @@ app.post('/ask', async (req , res)=>{
   try{ const {question} = req.body;
 
     const model = genAI.getGenerativeModel({
-        model: "gemini-2.5-flash"
+        model: "gemini-2.5-flash-lite"
     })
 
     const result = await model.generateContent(`
