@@ -13,7 +13,7 @@ app.post('/ask', async (req , res)=>{
   try{ const {question} = req.body;
 
     const model = genAI.getGenerativeModel({
-        model: "gemini-2.5-flash-lite"
+        model: "gemini-2.5-flash"
     })
 
     const result = await model.generateContent(`
@@ -26,11 +26,16 @@ Question: ${question}
     const answer = result.response.text()
     const title = titlename.response.text()
 
-    await assignmentModel.create({
-        question : question,
-        answer : answer,
-        title : title
-    })
+    // Save to DB if available (won't crash if MongoDB is down)
+    try {
+        await assignmentModel.create({
+            question : question,
+            answer : answer,
+            title : title
+        })
+    } catch (dbErr) {
+        console.warn("DB save failed (MongoDB down):", dbErr.message)
+    }
 
     res.status(200).json({
         message:"data created",
